@@ -21,5 +21,10 @@ class PartnersController extends Zend_Controller_Action
         $this->view->partners = $partners->getPartner($id);
     }
     
+    public function signAction()
+    {
+        $form = new Application_Form_Partner();
+        $this->view->form = $form;
+    }
 }
 
