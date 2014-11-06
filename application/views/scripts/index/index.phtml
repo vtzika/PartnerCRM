@@ -1,0 +1,44 @@
+<style>
+    a:link,
+    a:visited
+    {
+        color: #0398CA;
+    }
+
+    span#zf-name
+    {
+        color: #91BE3F;
+    }
+
+    div#home
+    {
+        background-color: #B0B0B0 
+    }
+
+    div#welcome
+    {
+        width:  600px;
+        height: 400px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    div#more-information
+    {
+        height: 100%;
+    }
+</style>
+<div id="home">
+    <div id="welcome">
+        <h3>Partner CRM</h3>
+
+        <div id="more-information">
+                Log in: <br />
+                <a href="http://framework.zend.com/">Log In</a>
+                <a href="http://framework.zend.com/manual/en/">Register</a>
+                <a href="<?php echo $this->url(array('controller'=>'partners',
+     'action'=>'index'));?>">Partners</a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<?php 
+$this->title = "Partners";
+$this->headTitle($this->title);
+?>
+<p><a href="<?php echo $this->url(array('controller'=>'partners',
+ 'action'=>'add'));?>">Add new Partner</a></p>
+ 
+ 
+<table>
+<tr>
+ <th>ID</th>
+ <th>Partner name</th>
+ <th>Email</th>
+ <th>Account Manager</th>
+ <th>&nbsp;</th>
+</tr>
+<?php foreach($this->partners as $partner) : ?>
+<tr>
+ <td><?php echo $this->escape($partner->id);?></td>
+ <td><?php echo $this->escape($partner->name);?></td>
+ <td><?php echo $this->escape($partner->email);?></td>
+ <td><?php echo $this->escape($partner->account_manager);?></td>
+ <td>
+ <a href="<?php echo $this->url(array('controller'=>'partners',
+ 'action'=>'edit', 'id'=>$partner->id));?>">Edit</a>
+ </td>
+</tr>
+<?php endforeach; ?>
+</table>
