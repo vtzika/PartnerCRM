@@ -31,26 +31,28 @@ class UsersController extends Zend_Controller_Action
     }
 
 
-     public function registerAction()
-        {
-            $users = new Application_Model_DbTable_Users();
-            #$this->view->user = $users->addUser($username, $email, $password, $role);
-            $form = new Zend_Form;
-            
-            $username = new Zend_Form_Element_Text('username');
-            $username->setLabel('Username');
-            $form->addElement($username);
+    public function registerAction()
+    {
+        $form = new Zend_Form;
+        
+        $username = new Zend_Form_Element_Text('username');
+        $username->setLabel('Username');
+        $form->addElement($username);
 
-            $password = new Zend_Form_Element_Text('password');
-            $password->setLabel('Password');
-            $form->addElement($password);
+        $password = new Zend_Form_Element_Text('password');
+        $password->setLabel('Password');
+        $form->addElement($password);
 
-            $submit = new Zend_Form_Element_Button('register');
-            $submit->setLabel('Register'); 
-            $form->addElement($submit);
+        $email = new Zend_Form_Element_Text('email');
+        $email->setLabel('Email');
+        $form->addElement($email);
 
-            $this->view->form = $form;
-        }
+        $submit = new Zend_Form_Element_Button('register');
+        $submit->setLabel('Register'); 
+        $form->addElement($submit);
+
+        $this->view->form = $form;
+    }
 
 
 
