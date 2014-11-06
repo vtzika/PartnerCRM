@@ -34,8 +34,10 @@
 
         <div id="more-information">
                 Log in: <br />
-                <a href="http://framework.zend.com/">Log In</a>
-                <a href="http://framework.zend.com/manual/en/">Register</a>
+                <a href="<?php echo $this->url(array('controller'=>'users',
+     'action'=>'login'));?>">Log In</a>
+                <a href="<?php echo $this->url(array('controller'=>'users',
+     'action'=>'register'));?>">Register</a>
                 <a href="<?php echo $this->url(array('controller'=>'partners',
      'action'=>'index'));?>">Partners</a>
             </p>
