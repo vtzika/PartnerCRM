@@ -7,7 +7,7 @@ class Application_Form_Partner extends Zend_Form
  
 
         // Add name element
-        $this->addElement('text', 'Name', array(
+        $this->addElement('text', 'name', array(
             'label'      => 'Name:',
             'required'   => true,
             'filters'    => array('StringTrim'),
@@ -16,7 +16,7 @@ class Application_Form_Partner extends Zend_Form
 
         // Add email element
         $this->addElement('text', 'email', array(
-            'label'      => 'Your email address:',
+            'label'      => 'Email:',
             'required'   => true,
             'filters'    => array('StringTrim'),
             'validators' => array(
@@ -25,31 +25,31 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         // Add account manager element
-        $this->addElement('text', 'Account Manager', array(
+        $this->addElement('text', 'account_manager', array(
             'label'      => 'Account Manager:',
-            'required'   => true,
+            'required'   => false,
             'filters'    => array('StringTrim'),
             )
         );
 
            // Add address element
-        $this->addElement('text', 'Address', array(
+        $this->addElement('text', 'address', array(
             'label'      => 'Address:',
-            'required'   => true,
+            'required'   => false,
             'filters'    => array('StringTrim'),
             )
         );
 
            // Add mobile element
-        $this->addElement('text', 'Mobile', array(
+        $this->addElement('text', 'mobile', array(
             'label'      => 'Mobile:',
-            'required'   => true,
+            'required'   => false,
             'filters'    => array('StringTrim'),
             )
         );
 
         // Add type element
-        $this->addElement('select', 'Type', array(
+        $this->addElement('select', 'type', array(
             'label'      => 'Type:',
             'required'   => true,
             'filters'    => array('StringTrim'),
@@ -59,7 +59,7 @@ class Application_Form_Partner extends Zend_Form
         
 
         // Add the comment element
-        $this->addElement('textarea', 'comment', array(
+        $this->addElement('textarea', 'comments', array(
             'label'      => 'Comment:',
             'validators' => array(
                 array('validator' => 'StringLength', 'options' => array(0, 20))

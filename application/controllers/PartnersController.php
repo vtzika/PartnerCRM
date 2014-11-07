@@ -23,7 +23,17 @@ class PartnersController extends Zend_Controller_Action
     
     public function signAction()
     {
+        $request = $this->getRequest();
         $form = new Application_Form_Partner();
+ 
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                $partner = new Application_Model_DbTable_Partners();
+                $partner->insert($form->getValues());
+                return $this->_helper->redirector('index');
+            }
+        }
+
         $this->view->form = $form;
     }
 }

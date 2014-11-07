@@ -13,17 +13,6 @@ class Application_Model_DbTable_Partners extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
     
-    public function addPartner($name, $email, $account_manager, $mobile)
-    {
-        $data = array(
-            'name' => $name,
-            'email' => $email,
-            'account_manager' => $account_manager,
-            'mobile' => $mobile,
-            
-        );
-        $this->insert($data);
-    }
     
     public function updatePartner($id, $name, $email, $ac_man)
     {
