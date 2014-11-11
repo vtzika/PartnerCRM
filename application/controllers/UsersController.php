@@ -2,8 +2,7 @@
 
 class UsersController extends Zend_Controller_Action
 {
-
-  public function indexAction()
+    public function indexAction()
     {
         $users = new Application_Model_DbTable_Users();
         $this->view->users = $users->fetchAll();
@@ -11,6 +10,7 @@ class UsersController extends Zend_Controller_Action
 
     public function loginAction()
     {
+        /*
         $users = new Application_Model_DbTable_Users();
         #$this->view->user = $users->addUser($username, $email, $password, $role);
         $form = new Zend_Form;
@@ -28,8 +28,19 @@ class UsersController extends Zend_Controller_Action
         $form->addElement($submit);
 
         $this->view->form = $form;
-    }
+        */
 
+        $form = new Application_Form_Login();
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                if ($this->_process($form->getValues())) {
+                    $this->_helper->redirector('index', 'index');
+                }
+            }
+        }
+        $this->view->form = $form;
+    }
 
     public function registerAction()
     {
@@ -64,5 +75,36 @@ class UsersController extends Zend_Controller_Action
         $this->view->users = $users->deleteUser($id);
     }
     
+
+       protected function _process($values)
+    {
+        $adapter = $this->_getAuthAdapter();
+        $adapter->setIdentity($values['username']);
+        $adapter->setCredential($values['password']);
+
+        $auth = Zend_Auth::getInstance();
+        $result = $auth->authenticate($adapter);
+        if ($result->isValid()) {
+        $user = $adapter->getResultRowObject();
+        $auth->getStorage()->write($user);
+        return true;
+        }
+        return false;
+    }
+
+
+    protected function _getAuthAdapter()
+    {
+
+        $dbAdapter = Zend_Db_Table::getDefaultAdapter();
+        $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
+
+        $authAdapter->setTableName('users')->setIdentityColumn('username')->setCredentialColumn('password');
+        #->setCredentialTreatment('SHA1(CONCAT(?,salt))');
+
+        return $authAdapter;
+    }
+
+ 
 }
 
